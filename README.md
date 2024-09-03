@@ -7,7 +7,7 @@ This project focuses on building a predictive model to forecast energy consumpti
 _TODO: Add setup instructions here._
 
 ## Usage
-Jupyter Notebooks (Basic Exploratory Analysis, Feature Engineering, Model Building) for this project are located in the "notebooks" directory.
+Jupyter Notebooks for this project are located in the "notebooks" directory: (1) Basic Exploratory Analysis, (2) Feature Engineering, (3) Model Building.
 
 ## Project Structure
 
