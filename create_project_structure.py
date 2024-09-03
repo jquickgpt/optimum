@@ -1,4 +1,60 @@
-# Project Name
+import os
+
+# Directory and file structure
+project_structure = {
+    "config": ["config.yaml", "config_prod.yaml"],
+    "src": {
+        "data": {
+            "__init__.py": [],
+            "load_data.py": [],
+            "split_data.py": [],
+            "transformers.py": [],
+        },
+        "features": ["__init__.py", "build_features.py"],
+        "models": ["__init__.py", "train.py", "evaluate.py", "predict.py"],
+        "pipeline": ["__init__.py", "pipeline.py"],
+        "utils": ["__init__.py", "logging.py", "metrics.py"],
+    },
+    "data": {
+        "raw": [".gitkeep"],
+        "processed": [".gitkeep"],
+    },
+    "notebooks": [".gitkeep"],
+    "tests": ["test_data.py", "test_model.py", "test_pipeline.py"],
+    "docs": ["index.md", "usage_guide.md"],
+    "scripts": [".gitkeep"],
+    "models": [".gitkeep"],
+    "docker": ["Dockerfile"],
+    "mlflow": ["mlflow_tracking.py"],
+    "fastapi": ["app.py", "routes.py"],
+    "infra": [".gitkeep"],
+    "ci": [".gitkeep"],
+}
+
+# Function to create directories and files
+
+
+def create_structure(base_path, structure):
+    for name, content in structure.items():
+        path = os.path.join(base_path, name)
+        if isinstance(content, list):  # It's a list of files
+            os.makedirs(path, exist_ok=True)
+            for file_name in content:
+                with open(os.path.join(path, file_name), 'w') as f:
+                    pass  # Create empty file
+        elif isinstance(content, dict):  # It's a sub-directory structure
+            os.makedirs(path, exist_ok=True)
+            create_structure(path, content)
+        else:
+            os.makedirs(path, exist_ok=True)  # Create directory
+
+
+# Create the project structure in the current directory
+current_directory = os.getcwd()
+create_structure(current_directory, project_structure)
+
+# Create the README.md file
+readme_content = """# Project Name
 
 ## Project Overview
 _TODO: Add project overview here._
@@ -83,3 +139,10 @@ _TODO: Add usage instructions here._
 
 ## Additional Sections
 _TODO: Add any other important sections here._
+"""
+
+# Write the README.md file
+with open(os.path.join(current_directory, "README.md"), "w") as f:
+    f.write(readme_content)
+
+print(f"Project structure has been created in the root directory.")
