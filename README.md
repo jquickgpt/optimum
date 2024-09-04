@@ -1,4 +1,4 @@
-# Project Name
+# Optimum Energy
 
 ## Project Overview
 This project focuses on building a predictive model to forecast energy consumption for a commercial building using historical data. Key tasks include data preprocessing, feature engineering, and evaluating machine learning models like Linear Regression and Gradient Boosting. The goal is to select the best-performing model based on appropriate metrics, with clear documentation of the thought process throughout the project​.
