@@ -81,5 +81,42 @@ Jupyter Notebooks are in the "notebooks" directory: (1) Basic Exploratory Analys
   - `api/`: Auto-generated API docs (e.g., from FastAPI).
   - `usage_guide.md`: Instructions on how to use the model and API.
 
+### 7. Feature Engineering: Based on Time and Chemical Engineering
+
+This section details the various feature engineering techniques applied to enhance the predictive power of the model.
+
+#### 1. Dimensionless Numbers
+- **Temperature-Humidity Index (THI)**: A simple index that combines temperature and humidity to assess overall "thermal comfort" levels. It serves as a proxy for outdoor conditions, which can influence energy consumption.
+- **Enthalpy**: The total heat content calculated from temperature and humidity, using psychrometric equations. Enthalpy provides a more physically meaningful feature for energy consumption prediction.
+
+#### 2. Relative Humidity
+- **Relative Humidity (%)**: A critical factor for HVAC systems, as it affects both cooling and heating loads by reflecting the moisture content in the air.
+
+#### 3. Dew Point
+- **Dew Point Temperature**: Calculated from temperature and relative humidity, dew point indicates the temperature at which air becomes saturated with moisture. This feature influences cooling requirements.
+
+#### 4. Lagging Variables
+- **Lagged Temperature and Humidity**: Lagged versions of temperature and humidity readings (e.g., t-1, t-2, ..., t-5) capture delayed effects of outdoor conditions on indoor energy consumption.
+- **Rolling Averages**: Calculated over various time windows (e.g., 1 hour, 3 hours, 6 hours) to smooth the data and capture underlying trends.
+- **Exponential Moving Averages (EMA)**: EMA gives more weight to recent readings while still considering past data, allowing for a dynamic smoothing effect.
+
+#### 5. Rate of Change
+- **Rate of Change**: The first derivative of temperature and humidity, which captures how quickly outdoor conditions change. Rapid changes may have a different impact on energy consumption compared to gradual changes.
+
+#### 6. Interaction Features
+- **Temperature × Humidity**: Interaction terms that capture non-linear effects influencing energy consumption.
+- **Temperature² and Humidity²**: Squared terms to model potential non-linear relationships between these features and energy consumption.
+
+#### 7. Psychrometric Properties
+- **Wet-Bulb Temperature**: Calculated using psychrometric charts, wet-bulb temperature is essential for HVAC design and operation.
+- **Specific Humidity**: A measure of water vapor content in the air, offering a more stable feature compared to relative humidity.
+
+#### 8. Time-Based Features
+- **Time of Day**: Energy consumption may follow diurnal patterns, so features like the hour of the day are included.
+- **Day of Week/Weekend Indicator**: Differentiating between weekdays and weekends to account for variations in energy consumption.
+
+#### 9. Cumulative Features
+- **Cumulative Degree Days**: Heating degree days (HDD) and cooling degree days (CDD) are accumulated over time to capture overall heating or cooling demand leading up to each time point.
+
 ## Additional Sections
 _TODO: Add any other important sections here._
